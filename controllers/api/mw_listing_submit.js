@@ -16,73 +16,74 @@
 */
 
 module.exports = function(pb) {
-    
+        
     //pb depdencies
     var util = pb.util;
     
-    function ContactSubmit() {};
-    util.inherits(ContactSubmit, pb.BaseController);
+    function ListingSubmit() {};
+    util.inherits(ListingSubmit, pb.BaseController);
 
-    ContactSubmit.prototype.render = function(cb) {
+    ListingSubmit.prototype.render = function(cb) {
       var self = this;
 
       this.getJSONPostParams(function(err, post) {
-        var message = self.hasRequiredParams(post, ['name', 'email']);
+        var message = self.hasRequiredParams(post, ['description', 'location','role']);
         if(message) {
           cb({
             code: 400,
-            content: pb.BaseController.apiResponse(pb.BaseController.API_ERROR, message)
+            content: pb.BaseController.apiResponse(pb.BaseController.API_ERROR, message,"Response 1")
           });
           return;
         }
 
         var cos = new pb.CustomObjectService();
-        cos.loadTypeByName('pb_contact', function(err, contactType) {
+        cos.loadTypeByName('mw_listing', function(err, contactType) {
           if(util.isError(err) || !util.isObject(contactType)) {
             cb({
               code: 400,
-              content: pb.BaseController.apiResponse(pb.BaseController.API_ERROR, self.ls.get('INVALID_UID'))
+              content: pb.BaseController.apiResponse(pb.BaseController.API_ERROR, self.ls.get('INVALID_UID'),"Response 2")
             });
             return;
           }
 
-          var contact = {
-            name: post.name + ' (' + util.uniqueId() + ')',
-            email: post.email,
-            description: post.email,
-            comment: post.comment,
-            date: new Date()
+          var listing = {            
+            name: util.uniqueId(),
+            description: post.description,
+            role: post.role,
+            location: post.location
           };
 
-          pb.CustomObjectService.formatRawForType(contact, contactType);
-          var customObjectDocument = pb.DocumentCreator.create('custom_object', contact);
+          pb.CustomObjectService.formatRawForType(listing, contactType);
+          var customObjectDocument = pb.DocumentCreator.create('custom_object', listing);
 
           cos.save(customObjectDocument, contactType, function(err, result) {
             if(util.isError(err)) {
               return cb({
                 code: 500,
-                content: pb.BaseController.apiResponse(pb.BaseController.API_ERROR, self.ls.get('ERROR_SAVING'))
+                content: pb.BaseController.apiResponse(pb.BaseController.API_ERROR, self.ls.get('ERROR_SAVING'),"Response 3")
               });
             }
             else if(util.isArray(result) && result.length > 0) {
+                console.log("HELLLOOO!!!", result, err);
               return cb({
                 code: 500,
                 content: pb.BaseController.apiResponse(pb.BaseController.API_ERROR, self.ls.get('ERROR_SAVING'))
               });
             }
 
-            cb({content: pb.BaseController.apiResponse(pb.BaseController.API_SUCCESS, 'contact submitted')});
+            cb({content: pb.BaseController.apiResponse(pb.BaseController.API_SUCCESS, 'new listing submitted')});
           });
         });
       });
     };
 
-    ContactSubmit.getRoutes = function(cb) {
+    ListingSubmit.getRoutes = function(cb) {
       var routes = [
         {
           method: 'post',
-          path: '/api/contact/pb_contact_submit',
-          auth_required: false,
+          path: '/api/listing/mw_listing_submit',
+          auth_required: true,
+          access_level: pb.SecurityService.ACCESS_WRITER,
           content_type: 'application/json'
         }
       ];
@@ -90,5 +91,5 @@ module.exports = function(pb) {
     };
 
     //exports
-    return ContactSubmit;
+    return ListingSubmit;
 };

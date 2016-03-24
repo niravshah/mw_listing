@@ -1,20 +1,16 @@
 {
-  "uid": "contact-pencilblue",
-  "name": "Contact Form",
-  "description": "A basic contact form plugin.",
-  "version": "0.2.0",
+  "uid": "mw_listing",
+  "name": "MW Listing Custoom Object",
+  "description": "MW Listing Custoom Objec",
+  "version": "0.1.0",
   "pb_version": "0.5.x",
   "author": {
-    "name": "PencilBlue",
-    "email": "info@pencilblue.org",
-    "website": "http://pencilblue.org",
+    "name": "MoveWithin",
+    "email": "info@movewithin.org",
+    "website": "http://movewithin.org",
     "contributors": [
       {
-          "name": "Blake Callens",
-          "email": ""
-      },
-      {
-          "name": "Brian Hyder",
+          "name": "Nirav Shah",
           "email": ""
       }
     ]
@@ -27,6 +23,6 @@
     "ACCESS_MANAGING_EDITOR": []
   },
   "main_module": {
-    "path": "contact.js"
+    "path": "mwlisting.js"
   }
 }

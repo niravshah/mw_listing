@@ -11,7 +11,9 @@ module.exports = function(pb) {
      * @author Blake Callens <blake@pencilblue.org>
      * @copyright 2015 PencilBlue, LLC
      */
-    function Contact(){}
+    function Listing(){
+        
+    }
 
     /**
      * Called when the application is being installed for the first time.
@@ -19,25 +21,24 @@ module.exports = function(pb) {
      * @param cb A callback that must be called upon completion.  cb(Error, Boolean).
      * The result should be TRUE on success and FALSE on failure
      */
-    Contact.onInstall = function(cb) {
+    Listing.onInstall = function(cb) {
         var self = this;
         
         var cos = new pb.CustomObjectService();
-        cos.loadTypeByName('pb_contact', function(err, contactType) {
+        cos.loadTypeByName('mw_listing', function(err, contactType) {
             if (util.isError(err) || contactType) {
                 return cb(err, !util.isError(err));
-            }
-            
+            }            
             var contactValues = {
-                name: 'pb_contact',
+                name: 'mw_listing',
                 fields: {
-                    name: {
+                    description: {
                         field_type: 'text'
                     },
-                    email: {
+                    location: {
                         field_type: 'text'
                     },
-                    comment: {
+                    role: {
                         field_type: 'text'
                     },
                     date: {
@@ -52,6 +53,7 @@ module.exports = function(pb) {
         });
     };
 
+    
     /**
      * Called when the application is uninstalling this plugin.  The plugin should
      * make every effort to clean up any plugin-specific DB items or any in function
@@ -60,8 +62,8 @@ module.exports = function(pb) {
      * @param cb A callback that must be called upon completion.  cb(Error, Boolean).
      * The result should be TRUE on success and FALSE on failure
      */
-    Contact.onUninstall = function(cb) {
-      cb(null, true);
+    Listing.onUninstall = function(cb) {
+      cb(null, true);        
     };
 
     /**
@@ -72,7 +74,7 @@ module.exports = function(pb) {
      * @param cb A callback that must be called upon completion.  cb(Error, Boolean).
      * The result should be TRUE on success and FALSE on failure
      */
-    Contact.onStartup = function(cb) {
+    Listing.onStartup = function(cb) {
       cb(null, true);
     };
 
@@ -83,10 +85,10 @@ module.exports = function(pb) {
      * @param cb A callback that must be called upon completion.  cb(Error, Boolean).
      * The result should be TRUE on success and FALSE on failure
      */
-    Contact.onShutdown = function(cb) {
+    Listing.onShutdown = function(cb) {
       cb(null, true);
     };
 
     //exports
-    return Contact;
+    return Listing;
 };
