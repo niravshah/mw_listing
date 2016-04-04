@@ -7,10 +7,10 @@
     $('#pb_contact_spinner').show();
 
       var postData = {
+          department:$('#mw_listing_department').val(),
           description: $('#mw_listing_description').val(),
           location: $('#mw_listing_location').val(),
-          role: $('#mw_listing_role').val(),
-          date: $('#mw_listing_date').val()
+          role: $('#mw_listing_role').val()
       }
 
     $.post('/api/listing/mw_listing_submit', JSON.stringify(postData), function(result) {

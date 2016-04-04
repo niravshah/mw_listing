@@ -41,6 +41,9 @@ module.exports = function(pb) {
                     role: {
                         field_type: 'text'
                     },
+                    department: {
+                        field_type: 'text'
+                    },
                     date: {
                         field_type: 'date'
                     }
