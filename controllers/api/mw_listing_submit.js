@@ -42,10 +42,12 @@ module.exports = function(pb) {
                 }
                 var listing = {
                     name: util.uniqueId(),
+                    id: util.uniqueId(),
                     description: post.description,
                     role: post.role,
                     location: post.location,
-                    department: post.department
+                    department: post.department,
+                    short:post.short
                 };
                 pb.CustomObjectService.formatRawForType(listing, contactType);
                 var customObjectDocument = pb.DocumentCreator.create('custom_object', listing);

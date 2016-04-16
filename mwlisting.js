@@ -32,8 +32,11 @@ module.exports = function(pb) {
             var contactValues = {
                 name: 'mw_listing',
                 fields: {
-                    description: {
+                    id:{
                         field_type: 'text'
+                    },
+                    description: {
+                        field_type: 'wysiwyg'
                     },
                     location: {
                         field_type: 'text'
@@ -44,8 +47,11 @@ module.exports = function(pb) {
                     department: {
                         field_type: 'text'
                     },
-                    date: {
-                        field_type: 'date'
+                    short:{
+                        field_type: 'text'
+                    },
+                    status:{
+                        field_type: 'text'
                     }
                 }
             };
