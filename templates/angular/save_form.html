@@ -8,7 +8,11 @@
                 short:$('#mw_listing_description').val(),
                 description: $scope.layout,
                 location: $('#mw_listing_location').val(),
-                role: $('#mw_listing_role').val()
+                role: $('#mw_listing_role').val(),
+                hm_name:$('#mw_listing_hm_name').val(),
+                hm_email:$('#mw_listing_hm_email').val(),
+                hr_name:$('#mw_listing_hr_name').val(),
+                hr_email:$('#mw_listing_hr_email').val()
             }
             $.post('/api/listing/mw_listing_submit', JSON.stringify(postData), function(result) {
                 if(result.code > 1) {

@@ -47,7 +47,11 @@ module.exports = function(pb) {
                     role: post.role,
                     location: post.location,
                     department: post.department,
-                    short:post.short
+                    short:post.short,
+                    hm_name: post.hm_name,
+                    hm_email: post.hm_email,
+                    hr_name:post.hr_name,
+                    hr_email:post.hr_email
                 };
                 pb.CustomObjectService.formatRawForType(listing, contactType);
                 var customObjectDocument = pb.DocumentCreator.create('custom_object', listing);

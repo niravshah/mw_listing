@@ -3,8 +3,12 @@
     "CONTACT_ERROR": "There was an error submitting your contact inquiry",
     "CONTACT_INVALID": "Your name and email address are required",
     "DESCRIPTION": "Description",
-    "ROLE":"Role",
-    "LOCATION":"Location",
-    "DATE":"Date",
-    "DEPARTMENT":"Department"
+    "ROLE": "Role",
+    "LOCATION": "Location",
+    "DATE": "Date",
+    "DEPARTMENT": "Department",
+    "HM_NAME": "Hiring Manager Name",
+    "HM_EMAIL": "Hiring Manager Email",
+    "HR_NAME": "HR Name",
+    "HR_EMAIL": "HR Email"
 }

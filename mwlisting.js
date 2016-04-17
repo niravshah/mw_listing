@@ -52,6 +52,18 @@ module.exports = function(pb) {
                     },
                     status:{
                         field_type: 'text'
+                    },
+                     hm_name:{
+                        field_type: 'text'
+                    },
+                     hm_email:{
+                        field_type: 'text'
+                    },
+                       hr_name:{
+                        field_type: 'text'
+                    },
+                     hr_email:{
+                        field_type: 'text'
                     }
                 }
             };
